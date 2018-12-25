@@ -7,16 +7,16 @@
     <body>
         <h1 style="">用户输入</h1>
         <form action="/index/" method="post">
-            <input type="text" name="studentName" />
-            <input type="text" name="score" />
+            姓名<input type="text" name="studentName" />
+            成绩<input type="text" name="score" />
             <input type="submit" value="提交" />
         </form>
     <br />
-    <h1>用户展示</h1>
+    <h1>成绩展示</h1>
     <table border="1">
         <thead>
-            <th>用户名</th>
-            <th>密码</th>
+            <th>姓名</th>
+            <th>成绩</th>
         </thead>
         <tbody>
             {% for line in data %}
