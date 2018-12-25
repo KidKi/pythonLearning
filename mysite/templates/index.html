@@ -11,6 +11,11 @@
             成绩<input type="text" name="score" />
             <input type="submit" value="提交" />
         </form>
+        <br/>
+        <form action="/importExcel/" method="post" enctype="multipart/form-data">
+            <input type="file" name="excel" />
+            <input type="submit" value="import" />
+        </form>
     <br />
     <h1>成绩展示</h1>
     <table border="1">
