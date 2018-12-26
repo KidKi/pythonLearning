@@ -19,5 +19,5 @@ from polls import views
 
 urlpatterns = [
     path('index/', views.index,),
-    path('import',views.index,)
+    path('importExcel/',views.importExcel,)
 ]

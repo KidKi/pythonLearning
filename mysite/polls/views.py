@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from polls import models
-import xlrd, sqlite3, os
+import xlrd, sqlite3, os, time
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Create your views here.
@@ -18,7 +18,7 @@ def index(request):
 def importExcel(request):
     if request.method == "POST":
         obj = request.FILES.get('excel')
-        position = os.path.join(BASE_DIR, 'static','excel', obj.name)
+        position = handle_uploaded_file(obj)
         data = xlrd.open_workbook(position)
         table = data.sheets()[0]
         nrows = table.nrows
@@ -35,5 +35,16 @@ def importExcel(request):
     user_list = models.UserInfo.objects.all()
     return render(request, "index.html", {"data": user_list})
 
+def handle_uploaded_file(f):
+    file_name = ""
 
+    path = os.path.join(BASE_DIR, 'static', 'excel')
+    if not os.path.exists(path):
+        os.makedirs(path)
+    file_name = os.path.join(path, str(int(round(time.time()*1000)))) + f.name
+    destination = open(file_name, 'wb+')
+    for chunk in f.chunks():
+        destination.write(chunk)
+    destination.close()
+    return file_name
 
