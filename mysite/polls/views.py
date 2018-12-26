@@ -28,7 +28,7 @@ def importExcel(request):
             if i == 0:
                 continue
             cursor.execute('insert into polls_userinfo(studentName,score) values (?,?)',
-                           (table.cell_value(i, 0), table.cell_value(i, 1)))
+                           (table.cell_value(i, 0), str(int(table.cell_value(i, 1)))))
         cursor.close()
         conn.commit()
         conn.close()
